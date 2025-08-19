@@ -75,8 +75,7 @@ curl -X POST "$hello_endpoint_url" -d 'World' -H "Content-Type: application/json
 
 - [`src/main/java/com/example/LambdaHandler.java`](src/main/java/com/example/LambdaHandler.java): Java Lambda handler.
 - [`build.gradle`](build.gradle): Gradle build file.
-- [`main.tf`](main.tf): Main Terraform configuration (API Gateway, Lambda, IAM).
-- [`outputs.tf`](outputs.tf): Terraform outputs.
+- [`terraform`](terraform): Terraform configuration files.
 
 ---
 

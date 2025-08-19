@@ -26,6 +26,15 @@ This repository demonstrates how to use [LocalStack](https://github.com/localsta
 
 ## Quick Start
 
+### Configure AWS CLI
+
+```sh
+export AWS_ACCESS_KEY_ID=test
+export AWS_SECRET_ACCESS_KEY=test
+export AWS_DEFAULT_REGION=us-east-1
+export AWS_ENDPOINT_URL=http://localhost:4566
+```
+
 ### 1. Start LocalStack
 
 ```sh
@@ -67,6 +76,18 @@ Test the endpoint:
 
 ```sh
 curl -X POST "$hello_endpoint_url" -d 'World' -H "Content-Type: application/json"
+```
+
+### Invoke the Lambda directly:
+
+```sh
+aws --endpoint-url=http://localhost:4566 lambda invoke \
+  --function-name sqs-sender-lambda \
+  --cli-binary-format raw-in-base64-out \
+  --payload '"Hello from LocalStack!"' \
+  response.json
+```
+
 ```
 
 ---

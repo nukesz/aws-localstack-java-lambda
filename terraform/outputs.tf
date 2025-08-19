@@ -25,23 +25,16 @@ output "hello_endpoint_url" {
   value       = "http://localhost:4566/restapis/${aws_api_gateway_rest_api.api.id}/dev/_user_request_/hello"
 }
 
+# -----------------------------------------------------------------------------
+# 📤 OUTPUT: SQS Queue URL
+# -----------------------------------------------------------------------------
+output "sqs_queue_url" {
+  value = aws_sqs_queue.demo_queue.id
+}
 
-
-resource "aws_iam_role_policy" "lambda_logging" {
-  name   = "lambda_logging_policy"
-  role   = aws_iam_role.lambda_exec_role.id
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Action = [
-          "logs:CreateLogGroup",
-          "logs:CreateLogStream",
-          "logs:PutLogEvents"
-        ]
-        Effect   = "Allow"
-        Resource = "*"
-      }
-    ]
-  })
+# -----------------------------------------------------------------------------
+# 📤 OUTPUT: SQS Sender Lambda ARN
+# -----------------------------------------------------------------------------
+output "sqs_sender_lambda_arn" {
+  value = aws_lambda_function.sqs_sender.arn
 }

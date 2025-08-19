@@ -3,6 +3,7 @@
   "features": {
     "ghcr.io/localstack/devcontainer-feature/localstack-cli:0": {},
     "ghcr.io/devcontainers/features/terraform:latest": {},
+    "ghcr.io/devcontainers/features/aws-cli:1": {},
     "ghcr.io/devcontainers/features/java:1": {
       "version": "21"
     }

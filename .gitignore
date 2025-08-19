@@ -3,3 +3,35 @@ target
 .vscode
 .gradle
 /build/
+
+# === Terraform ===
+
+# Local .terraform directories
+**/.terraform/*
+
+# Terraform state files
+*.tfstate
+*.tfstate.*
+**/*.tfstate
+**/*.tfstate.*
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Exclude override files (used for local dev/testing)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Exclude plan output
+*.tfplan
+**/*.tfplan
+
+# Exclude CLI config files
+.terraformrc
+terraform.rc
+
+# Lock file (optional - if you want reproducible provider versions, remove this line)
+.terraform.lock.hcl

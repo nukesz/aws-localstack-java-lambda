@@ -62,10 +62,10 @@ resource "aws_lambda_function" "my_lambda" {
   function_name = "my-java-lambda"
   role          = aws_iam_role.lambda_exec_role.arn
   handler       = "com.example.LambdaHandler::handleRequest" # Java class with the handleRequest method
-  runtime       = "java17"                                   # Must match the build
+  runtime       = var.java_runtime_version
 
-  filename           = "${path.module}/../build/libs/aws-localstack-java-lambda-1.0-SNAPSHOT-all.jar"
-  source_code_hash   = filebase64sha256("${path.module}/../build/libs/aws-localstack-java-lambda-1.0-SNAPSHOT-all.jar")
+  filename           = "${path.module}/../${var.jar_file_location}"
+  source_code_hash   = filebase64sha256("${path.module}/../${var.jar_file_location}")
 }
 
 # filename: Path to the JAR file.

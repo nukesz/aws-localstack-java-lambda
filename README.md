@@ -86,7 +86,8 @@ curl -X POST "$hello_endpoint_url" -d 'World' -H "Content-Type: application/json
 aws --endpoint-url=http://localhost:4566 lambda invoke \
   --function-name sqs-sender-lambda \
   --cli-binary-format raw-in-base64-out \
-  --payload '"Hello from LocalStack!"'
+  --payload '"Hello from LocalStack!"' \
+  response.json
 ```
 
 ---

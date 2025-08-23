@@ -52,17 +52,10 @@ This produces the Lambda JAR at `build/libs/aws-localstack-java-lambda-1.0-SNAPS
 ### 3. Deploy Infrastructure with Terraform
 
 ```sh
+cd terraform
 terraform init
 terraform apply
 ```
-
-Terraform will:
-
-- Create an IAM role for Lambda
-- Deploy the Lambda function
-- Create an API Gateway REST API with a `/hello` resource
-- Integrate API Gateway with Lambda (AWS_PROXY)
-- Grant API Gateway permission to invoke the Lambda
 
 ### 4. Invoke the REST API
 

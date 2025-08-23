@@ -27,57 +27,6 @@ provider "aws" {
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs#custom-service-endpoints
 
 # -----------------------------------------------------------------------------
-# 🟢 IAM ROLE FOR LAMBDA
-# -----------------------------------------------------------------------------
-# Lambda functions need a role (even in LocalStack). This one is fake but satisfies the requirement.
-
-resource "aws_iam_role" "lambda_exec_role" {
-  name = "lambda-exec-role"
-
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17",
-    Statement = [{
-      Effect = "Allow",
-      Action = "sts:AssumeRole",
-      Principal = {
-        Service = "lambda.amazonaws.com"
-      }
-    }]
-  })
-}
-
-# Learn more:
-# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role
-
-#resource "aws_iam_role_policy_attachment" "lambda_exec_policy" {
-#  role       = aws_iam_role.lambda_exec_role.name
-#  policy_arn = "arn:aws:iam::aws:policy/service-role/AwsLambdaBasicExecutionRole"
-#}
-
-# -----------------------------------------------------------------------------
-# 🧠 LAMBDA FUNCTION DEPLOYMENT
-# -----------------------------------------------------------------------------
-# This uploads the Java Lambda function and makes it runnable.
-
-resource "aws_lambda_function" "my_lambda" {
-  function_name = "my-java-lambda"
-  role          = aws_iam_role.lambda_exec_role.arn
-  handler       = "com.example.LambdaHandler::handleRequest" # Java class with the handleRequest method
-  runtime       = var.java_runtime_version
-
-  filename           = "${path.module}/../${var.jar_file_location}"
-  source_code_hash   = filebase64sha256("${path.module}/../${var.jar_file_location}")
-}
-
-# filename: Path to the JAR file.
-# handler: Java package and class of your handler.
-# source_code_hash: Forces update when JAR changes.
-
-# Learn more:
-# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function
-
-
-# -----------------------------------------------------------------------------
 # 🌐 API GATEWAY SETUP
 # -----------------------------------------------------------------------------
 # Creates the REST API named "MyLocalAPI"

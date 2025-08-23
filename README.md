@@ -115,9 +115,3 @@ terraform destroy
 - [LocalStack Documentation](https://docs.localstack.cloud/)
 - [Terraform AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
 - [AWS Lambda Java Programming Model](https://docs.aws.amazon.com/lambda/latest/dg/java-handler.html)
-
----
-
-## License
-
-See [aws/THIRD_PARTY_LICENSES](aws/THIRD_PARTY_LICENSES) for third-party licenses.
